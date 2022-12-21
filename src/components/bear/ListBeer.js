@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import BearPageIndex from "./context/BearPageIndex";
 import styled from "styled-components";
-import BearPageSizeContext from "./context/BearPageSizeContext";
-import BearAppContext from './context/BearAppContext'
+import BeerPageSizeContext from "./context/BearPageSizeContext";
+import BeerAppContext from './context/BearAppContext'
 
 
 const HeaderTitle = styled.div`
@@ -56,10 +56,10 @@ color:blue;
 
 `
 
-export default function ListBear() {
+export default function ListBeer() {
   const pageIndex = useContext(BearPageIndex)
-  const pageSize = useContext(BearPageSizeContext)
-  const bear = useContext(BearAppContext)
+  const pageSize = useContext(BeerPageSizeContext)
+  const bear = useContext(BeerAppContext)
 
   return (
     <HeaderTitle>

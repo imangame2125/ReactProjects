@@ -1,9 +1,9 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer} from "react";
 import styled from "styled-components";
-import BearAppContext from "./context/BearAppContext";
-import BearPageIndex from "./context/BearPageIndex";
-import BearPageSizeContext from "./context/BearPageSizeContext";
-import ListBear from "./ListBear";
+import BeerAppContext from "./context/BearAppContext";
+import BeerPageIndex from "./context/BearPageIndex";
+import BeerPageSizeContext from "./context/BearPageSizeContext";
+import ListBeer from "./ListBeer";
 import StateFilter from "./StateFilter";
 
 const Select = styled.select`
@@ -45,7 +45,7 @@ const NavigtionButton = styled.button`
 `
 
 const initValue = {
-  bearItems: [],
+  beerItems: [],
   pageIndex: 1,
   pageSize: 10,
   selectedCity: 'Dallas'
@@ -78,15 +78,15 @@ function reducer(state, action) {
     case 'GET_DATA':
       return {
         ...state,
-        bearItems: action.payload
+        beerItems: action.payload
       }
   }
 
   return state
 }
 
-export default function BearApp() {
-  const [{ bearItems, pageIndex, pageSize, selectedCity }, dispatch] = useReducer(reducer, initValue)
+export default function BeerApp() {
+  const [{ beerItems, pageIndex, pageSize, selectedCity }, dispatch] = useReducer(reducer, initValue)
 
 
   function handleNextClick() {
@@ -109,21 +109,21 @@ export default function BearApp() {
   }
 
   function handleCityChange(city) {
-   
+
     dispatch({
       type: 'SELECTED_CITY',
       payload: city
     })
-  
+
   }
 
   function formatCity(city) {
-   
+
     return city.split(' ').join('_');
   }
 
   useEffect(() => {
- 
+
     const formattedCity = formatCity(selectedCity);
     fetch(`https://api.openbrewerydb.org/breweries?by_city=${formattedCity}&page=${pageIndex}&per_page=${pageSize}`)
       .then(response => response.json())
@@ -132,15 +132,15 @@ export default function BearApp() {
           type: 'GET_DATA',
           payload: data
         })
-      
+
       })
   }, [pageIndex, pageSize, selectedCity])
   return (
     <>
-      <BearAppContext.Provider value={bearItems}>
-        <BearPageSizeContext.Provider value={pageSize}>
-          <BearPageIndex.Provider value={pageIndex}>
-            <ListBear pageSize={pageSize} pageIndex={pageIndex} bear={bearItems} />
+      <BeerAppContext.Provider value={beerItems}>
+        <BeerPageSizeContext.Provider value={pageSize}>
+          <BeerPageIndex.Provider value={pageIndex}>
+            <ListBeer pageSize={pageSize} pageIndex={pageIndex} beer={beerItems} />
             <NavigtionButton disabled={pageIndex <= 1} onClick={handlePrevClick}>Previous</NavigtionButton>
             <NavigtionButton onClick={handleNextClick}>Next</NavigtionButton>
             <Select onChange={handleChange} value={pageSize}>
@@ -148,13 +148,13 @@ export default function BearApp() {
               <option value={20}>20</option>
               <option value={30}>30</option>
               <option value={40}>40</option>
-              
+
             </Select>
 
             <StateFilter onCityChange={handleCityChange} />
-          </BearPageIndex.Provider>
-        </BearPageSizeContext.Provider>
-      </BearAppContext.Provider>
+          </BeerPageIndex.Provider>
+        </BeerPageSizeContext.Provider>
+      </BeerAppContext.Provider>
     </>
 
 
