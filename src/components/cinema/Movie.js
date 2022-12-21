@@ -28,7 +28,7 @@ const initialValue = {
   open: false
 }
 export default function Movie({ movie, onBackClick }) {
-  // const [open, setOpen] = useState(false)
+
   const [{ open }, dispatch] = useReducer(reducer, initialValue)
 
   function handleMoreClick() {

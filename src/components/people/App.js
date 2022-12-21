@@ -31,7 +31,6 @@ function usePeople() {
 
 
 export default function App() {
-  // const [people, setPeople] = useState([]);
   const [selectedPersonId, setSelectedPersonId] = useState(null);
   const [tallestPerson, setTallestPerson] = useState(false);
   const [oldestPerson, setOldestPerson] = useState(false)
@@ -62,12 +61,7 @@ export default function App() {
     setOldestPerson(true)
 
   }
-  // useEffect(() => {
-  //   GetDataPerson()
-  //     .then((people) => {
-  //       setPeople(people)
-  //     })
-  // }, [])
+ 
 
 
   const selectedPerson = people.find((item) => item.id === selectedPersonId)

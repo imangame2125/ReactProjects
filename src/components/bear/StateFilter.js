@@ -30,15 +30,7 @@ export default function StateFilter({ onCityChange }) {
     onCityChange(e.target.value)
   }
 
-  // const cities = States[selectedState]
-  // let citiesStates;
-  // if (selectedState !== undefined) {
-  //   citiesStates = cities.map((item) => {
-  //     return (
-  //       <option key={item}>{item}</option>
-  //     )
-  //   })
-  // }
+
 
 
 

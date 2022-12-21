@@ -86,69 +86,44 @@ function reducer(state, action) {
 }
 
 export default function BearApp() {
-  // const pageSize = 10;
   const [{ bearItems, pageIndex, pageSize, selectedCity }, dispatch] = useReducer(reducer, initValue)
-  // const [bearItems, setBearItems] = useState([]);
-  // const [pageIndex, setPageIndex] = useState(1);
-  // const [pageSize, setPageSize] = useState(10);
-  // const [selectedCity, setSelectedCity] = useState('Dallas');
+
 
   function handleNextClick() {
     dispatch({
       type: 'INDEX_INC'
     })
-    // setPageIndex(pageIndex + 1)
   }
 
   function handlePrevClick() {
     dispatch({
       type: 'INDEX_DEC'
     })
-    // setPageIndex(pageIndex - 1)
   }
   function handleChange(e) {
-    // setPageSize()
     const selectedPageSize = parseInt(e.target.value)
-    // const selectedPageSize = +e.target.value;
-    // console.log(typeof selectedPageSize, selectedPageSize);
     dispatch({
       type: 'SET_PAGE_SIZE',
       payload: selectedPageSize
     })
-    // setPageSize(selectedPageSize)
   }
 
   function handleCityChange(city) {
-    // console.log('city');
-    // console.log(selectedCity);
+   
     dispatch({
       type: 'SELECTED_CITY',
       payload: city
     })
-    // setSelectedCity(city)
+  
   }
 
   function formatCity(city) {
-    // let result = '';
-    // for (let i = 0; i < city.length; i++) {
-    //   const char = city[i];
-    //   if (char === ' ') {
-    //     result += '_';
-    //   }
-    //   else {
-    //     result += char;
-    //   }
-    // }
-    // return result;
-    // const parts = city.split(' ')
-    // return parts.join('_')
+   
     return city.split(' ').join('_');
   }
 
   useEffect(() => {
-    // console.log('fetch');
-    // let encodedCity = encodeURIComponent(selectedCity);
-    // New York
+ 
     const formattedCity = formatCity(selectedCity);
     fetch(`https://api.openbrewerydb.org/breweries?by_city=${formattedCity}&page=${pageIndex}&per_page=${pageSize}`)
       .then(response => response.json())
@@ -157,7 +132,7 @@ export default function BearApp() {
           type: 'GET_DATA',
           payload: data
         })
-        // setBearItems(data)
+      
       })
   }, [pageIndex, pageSize, selectedCity])
   return (
@@ -186,19 +161,3 @@ export default function BearApp() {
   )
 }
 
-function abbas(x) {
-  console.log('abbas', x)
-}
-
-function mamad(y, z) {
-  console.log('mamad', y, z);
-}
-
-function app(fn) {
-  console.log('app');
-  fn('p1', 'p2');
-}
-
-app(abbas);
-// app
-// abbas p1
