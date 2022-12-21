@@ -1,1 +1,1 @@
-# please visit beer-list-react.vercel.app/ to see the output
+# please visit https://beer-list-react.vercel.app/ to see the output
